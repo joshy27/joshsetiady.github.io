@@ -1,0 +1,496 @@
+/* ============================================================
+   DESIGN TOKENS
+   Concept: the page is laid out as a 6-sheet engineering
+   drawing set. Dark blueprint navy stands in for a drafting
+   table at night; kraft-paper cards are the "sheets" pinned to
+   it; safety orange is the shop-floor accent (tape measures,
+   E-stops, hi-vis); cyan is reserved for dimension lines/data.
+   ============================================================ */
+:root {
+  --bg: #0F1B30;
+  --bg-deep: #0A1424;
+  --paper: #E9E2D0;
+  --paper-line: #C9BE9E;
+  --ink: #1C2230;
+  --ink-soft: #4B5468;
+  --text: #ECE7D8;
+  --text-muted: #8CA0B8;
+  --accent: #FF6A2B;
+  --accent-cyan: #5FD4E3;
+
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  --sheet-max: 880px;
+  --edge: clamp(24px, 6vw, 64px);
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  background-image:
+    linear-gradient(rgba(95, 212, 227, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(95, 212, 227, 0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+  color: var(--text);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: inherit; }
+
+ul { margin: 0; padding: 0; list-style: none; }
+
+/* ---------------- Toolbar / nav ---------------- */
+.toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px var(--edge);
+  background: rgba(15, 27, 48, 0.85);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(140, 160, 184, 0.2);
+}
+
+.toolbar-mark {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--accent);
+}
+
+.toolbar-links {
+  display: flex;
+  gap: 32px;
+}
+
+.toolbar-links a {
+  text-decoration: none;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  transition: color 0.2s ease;
+  padding: 4px 2px;
+  border-bottom: 1px solid transparent;
+}
+
+.toolbar-links a:hover,
+.toolbar-links a:focus-visible {
+  color: var(--accent-cyan);
+  border-bottom-color: var(--accent-cyan);
+}
+
+.toolbar-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+}
+
+.toolbar-toggle span {
+  width: 22px;
+  height: 2px;
+  background: var(--text);
+  display: block;
+}
+
+/* ---------------- Sheets (sections) ---------------- */
+.sheet {
+  padding: 96px var(--edge) 64px;
+  display: flex;
+  justify-content: center;
+}
+
+.sheet-frame {
+  width: 100%;
+  max-width: var(--sheet-max);
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent-cyan);
+  margin: 0 0 18px;
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 3.2vw, 2.2rem);
+  font-weight: 600;
+  margin: 0 0 20px;
+  color: var(--text);
+}
+
+.lede {
+  font-size: 1.02rem;
+  color: var(--text);
+  max-width: 62ch;
+  margin: 0 0 16px;
+}
+
+.lede:last-of-type { margin-bottom: 0; }
+
+/* ---------------- Hero ---------------- */
+.hero {
+  padding-top: 72px;
+  min-height: 88vh;
+  align-items: center;
+}
+
+.hero-name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(3rem, 10vw, 5.5rem);
+  margin: 0 0 8px;
+  letter-spacing: -0.02em;
+}
+
+.cursor {
+  color: var(--accent);
+  animation: blink 1.1s steps(2, start) infinite;
+}
+
+@keyframes blink { to { opacity: 0; } }
+
+.hero-role {
+  font-family: var(--font-mono);
+  font-size: clamp(0.95rem, 2vw, 1.1rem);
+  color: var(--accent-cyan);
+  margin: 0 0 40px;
+}
+
+/* ---------------- Title block table ---------------- */
+.title-block {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  margin-bottom: 40px;
+  box-shadow: 6px 6px 0 rgba(0,0,0,0.25);
+}
+
+.title-block td {
+  border: 1px solid var(--paper-line);
+  padding: 12px 14px;
+  vertical-align: top;
+}
+
+.tb-label {
+  color: var(--ink-soft);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 0.7rem;
+  width: 14%;
+  white-space: nowrap;
+}
+
+.tb-value {
+  width: 36%;
+  font-weight: 500;
+}
+
+.title-block a { text-decoration: none; border-bottom: 1px solid var(--ink-soft); }
+.title-block a:hover { border-bottom-color: var(--ink); }
+
+/* ---------------- CTA ---------------- */
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--bg-deep);
+  background: var(--accent);
+  padding: 14px 22px;
+  text-decoration: none;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.cta:hover, .cta:focus-visible {
+  transform: translate(-2px, -2px);
+  box-shadow: 4px 4px 0 var(--accent-cyan);
+}
+
+.cta svg { transition: transform 0.15s ease; }
+.cta:hover svg { transform: translateX(3px); }
+
+/* ---------------- Dimension-line dividers ---------------- */
+.dim-divider {
+  position: relative;
+  max-width: var(--sheet-max);
+  margin: 0 auto;
+  padding: 0 var(--edge);
+  height: 34px;
+}
+
+.dim-divider svg {
+  width: 100%;
+  height: 100%;
+  stroke: var(--text-muted);
+  stroke-width: 1;
+  opacity: 0.5;
+}
+
+.dim-divider::after {
+  content: attr(data-label);
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--bg);
+  padding: 0 12px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  letter-spacing: 0.1em;
+}
+
+/* ---------------- Revision table (experience) ---------------- */
+.rev-table {
+  border: 1px solid rgba(140, 160, 184, 0.3);
+}
+
+.rev-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 2.4fr;
+  gap: 16px;
+  padding: 16px 18px;
+  border-bottom: 1px solid rgba(140, 160, 184, 0.2);
+}
+
+.rev-row:last-child { border-bottom: none; }
+
+.rev-head {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+}
+
+.rev-company {
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: var(--text);
+}
+
+.rev-role {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  color: var(--accent-cyan);
+}
+
+.rev-scope {
+  font-size: 0.92rem;
+  color: var(--text);
+}
+
+/* ---------------- Projects ---------------- */
+.project-card {
+  padding: 28px clamp(16px, 3vw, 28px);
+  border: 1px solid rgba(140, 160, 184, 0.25);
+  background: rgba(233, 226, 208, 0.03);
+  margin-bottom: 8px;
+}
+
+.project-name {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--accent);
+  margin: 0 0 6px;
+}
+
+.project-meta {
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  letter-spacing: 0.04em;
+  color: var(--accent-cyan);
+  margin: 0 0 22px;
+}
+
+.review-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.review-col h4 {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  margin: 0 0 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(140, 160, 184, 0.25);
+}
+
+.review-col ul {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.review-col li {
+  font-size: 0.88rem;
+  line-height: 1.55;
+  padding-left: 14px;
+  position: relative;
+}
+
+.review-col li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.6em;
+  width: 5px;
+  height: 5px;
+  background: var(--accent);
+}
+
+@media (max-width: 720px) {
+  .review-grid { grid-template-columns: 1fr; gap: 22px; }
+}
+
+/* ---------------- Project / BOM table (legacy, still used if reintroduced) ---------------- */
+
+.bom {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 24px;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+}
+
+.bom th {
+  text-align: left;
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  padding: 8px 12px;
+  border-bottom: 1px solid rgba(140, 160, 184, 0.4);
+}
+
+.bom td {
+  padding: 10px 12px;
+  border-bottom: 1px solid rgba(140, 160, 184, 0.15);
+}
+
+.bom tr:hover td { background: rgba(95, 212, 227, 0.06); }
+
+.bom-footnote {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  margin-top: 8px;
+}
+
+/* ---------------- Skills ---------------- */
+.skill-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 28px;
+}
+
+.skill-group h4 {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent-cyan);
+  margin: 0 0 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(140, 160, 184, 0.3);
+}
+
+.skill-group li {
+  padding: 4px 0;
+  font-size: 0.92rem;
+}
+
+/* ---------------- Footer / contact ---------------- */
+.footnote {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-top: 24px;
+}
+
+/* ---------------- Responsive ---------------- */
+@media (max-width: 720px) {
+  .toolbar-links {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--bg-deep);
+    flex-direction: column;
+    gap: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.25s ease;
+    border-bottom: 1px solid rgba(140, 160, 184, 0.2);
+  }
+  .toolbar-links.open { max-height: 300px; }
+  .toolbar-links a {
+    display: block;
+    padding: 16px var(--edge);
+    border-bottom: 1px solid rgba(140, 160, 184, 0.1);
+  }
+  .toolbar-toggle { display: flex; }
+
+  .title-block, .title-block tbody, .title-block tr, .title-block td {
+    display: block;
+    width: 100% !important;
+  }
+  .title-block tr { border-bottom: 2px solid var(--paper-line); }
+  .title-block td { border: none; border-bottom: 1px solid var(--paper-line); }
+
+  .rev-row { grid-template-columns: 1fr; gap: 4px; }
+  .rev-head { display: none; }
+}
+
+/* ---------------- Focus visibility ---------------- */
+a:focus-visible, button:focus-visible {
+  outline: 2px solid var(--accent-cyan);
+  outline-offset: 3px;
+}
+
+/* ---------------- Scroll reveal ---------------- */
+.sheet {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.sheet.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
