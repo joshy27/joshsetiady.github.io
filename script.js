@@ -49,6 +49,11 @@ document.querySelectorAll('[data-carousel]').forEach((carousel) => {
   const nextBtn = carousel.querySelector('.carousel-next');
   if (!track || !prevBtn || !nextBtn) return;
 
+  if (track.querySelectorAll('img').length === 0) {
+    carousel.style.display = 'none';
+    return;
+  }
+
   const scrollByAmount = () => {
     const firstImg = track.querySelector('img');
     if (!firstImg) return track.clientWidth;
