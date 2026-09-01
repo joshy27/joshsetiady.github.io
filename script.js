@@ -42,40 +42,46 @@ if (yearEl) {
   yearEl.textContent = new Date().getFullYear();
 }
 
-// Photo carousels (adapts to however many images are inside each track)
-document.querySelectorAll('[data-carousel]').forEach((carousel) => {
-  const track = carousel.querySelector('.carousel-track');
-  const prevBtn = carousel.querySelector('.carousel-prev');
-  const nextBtn = carousel.querySelector('.carousel-next');
-  if (!track || !prevBtn || !nextBtn) return;
+// Photo stages: single large photo at a time, stacked and swapped on arrow press.
+// Adapts to however many <img> tags are inside each .stage-window.
+document.querySelectorAll('[data-stage]').forEach((stage) => {
+  const window_ = stage.querySelector('.stage-window');
+  const prevBtn = stage.querySelector('.stage-prev');
+  const nextBtn = stage.querySelector('.stage-next');
+  if (!window_ || !prevBtn || !nextBtn) return;
 
-  if (track.querySelectorAll('img').length === 0) {
-    carousel.style.display = 'none';
+  const slides = Array.from(window_.querySelectorAll('img'));
+
+  if (slides.length === 0) {
+    stage.style.display = 'none';
     return;
   }
 
-  const scrollByAmount = () => {
-    const firstImg = track.querySelector('img');
-    if (!firstImg) return track.clientWidth;
-    const gap = parseFloat(getComputedStyle(track).gap) || 0;
-    return firstImg.getBoundingClientRect().width + gap;
+  let current = 0;
+  slides[0].classList.add('active');
+
+  if (slides.length === 1) {
+    prevBtn.disabled = true;
+    nextBtn.disabled = true;
+    return;
+  }
+
+  const goTo = (nextIndex) => {
+    const outgoing = slides[current];
+    outgoing.classList.remove('active');
+    outgoing.classList.add('exit-left');
+
+    current = (nextIndex + slides.length) % slides.length;
+    const incoming = slides[current];
+    incoming.classList.remove('exit-left');
+    // Force reflow so the transition replays even if this slide exited before
+    void incoming.offsetWidth;
+    incoming.classList.add('active');
+
+    window.setTimeout(() => outgoing.classList.remove('exit-left'), 420);
   };
 
-  const updateButtons = () => {
-    const maxScroll = track.scrollWidth - track.clientWidth - 1;
-    prevBtn.disabled = track.scrollLeft <= 0;
-    nextBtn.disabled = track.scrollLeft >= maxScroll || maxScroll <= 0;
-  };
-
-  prevBtn.addEventListener('click', () => {
-    track.scrollBy({ left: -scrollByAmount(), behavior: 'smooth' });
-  });
-
-  nextBtn.addEventListener('click', () => {
-    track.scrollBy({ left: scrollByAmount(), behavior: 'smooth' });
-  });
-
-  track.addEventListener('scroll', updateButtons, { passive: true });
-  window.addEventListener('resize', updateButtons);
-  updateButtons();
+  prevBtn.addEventListener('click', () => goTo(current - 1));
+  nextBtn.addEventListener('click', () => goTo(current + 1));
 });
+
