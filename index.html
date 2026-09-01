@@ -89,15 +89,39 @@
         <div class="rev-row rev-head">
           <span>Company</span><span>Role</span><span>Scope</span>
         </div>
-        <div class="rev-row">
-          <span class="rev-company">Kovari Industries</span>
-          <span class="rev-role">Mechatronics Intern</span>
-          <span class="rev-scope">Writes CAM programs in Fusion 360 and operates the CNC machine for in house manufacturing, cutting turnaround time up to 98 percent through rapid prototyping and laser cutting. Designs and edits parts in Onshape for FDM 3D printing with AI assisted workflows, and quality inspects parts against prior builds. Works cross functionally with electrical and software teams calibrating gripper sensors, and manages parts inventory and BOM.</span>
+        <div class="rev-entry">
+          <div class="rev-row">
+            <span class="rev-company">Kovari Industries</span>
+            <span class="rev-role">Mechatronics Intern</span>
+            <span class="rev-scope">Designed and built a rack and pinion gripper from scratch in Onshape, combining off the shelf spur gears and gear racks with 3D printed components to improve gripper reliability by 25 percent. Writes CAM programs in Fusion 360 and operates the CNC machine to manufacture parts in house through rapid prototyping and laser cutting, applying DFM principles to keep parts manufacturable on the shop floor. Collaborates cross functionally within a team of 10 software and mechatronics engineers, calibrating gripper sensors and managing parts inventory and BOM. Engineered glue free cable securement mounts for motor attachments, reducing sudden operational failures by 30 percent.</span>
+          </div>
+          <div class="photo-carousel" data-carousel>
+            <button type="button" class="carousel-btn carousel-prev" aria-label="Previous Kovari photo">&#8249;</button>
+            <div class="carousel-track">
+              <img src="images/kovari-1.jpg" alt="Kovari Industries gripper photo 1" loading="lazy">
+              <img src="images/kovari-2.jpg" alt="Kovari Industries gripper photo 2" loading="lazy">
+              <img src="images/kovari-3.jpg" alt="Kovari Industries gripper photo 3" loading="lazy">
+              <img src="images/kovari-4.jpg" alt="Kovari Industries gripper photo 4" loading="lazy">
+            </div>
+            <button type="button" class="carousel-btn carousel-next" aria-label="Next Kovari photo">&#8250;</button>
+          </div>
         </div>
-        <div class="rev-row">
-          <span class="rev-company">BCA (Bank Central Asia)</span>
-          <span class="rev-role">Mechatronics Engineer Intern</span>
-          <span class="rev-scope">Designed and implemented automated robotic validation systems for facial recognition testing, increasing test accuracy by 25 percent. Programmed and optimized robot motion control in URScript to reduce cycle time variability, and re architected end to end testing workflows for better repeatability and audit traceability.</span>
+        <div class="rev-entry">
+          <div class="rev-row">
+            <span class="rev-company">BCA (Bank Central Asia)</span>
+            <span class="rev-role">Mechatronics Engineer Intern</span>
+            <span class="rev-scope">Built and validated mechanical test rigs for facial recognition testing within a broader engineering team of about 15, increasing test accuracy by 25 percent. Programmed and optimized robot motion control in URScript, reducing cycle time variability and improving system stability. Developed a universal test rig for a robotic arm to pick cards from a carousel and insert them across multiple card readers, cutting setup swap time by 60 percent. Integrated 3D printing into the team's testing workflow, removing the need to outsource quick turn parts.</span>
+          </div>
+          <div class="photo-carousel" data-carousel>
+            <button type="button" class="carousel-btn carousel-prev" aria-label="Previous BCA photo">&#8249;</button>
+            <div class="carousel-track">
+              <img src="images/bca-1.jpg" alt="BCA test rig photo 1" loading="lazy">
+              <img src="images/bca-2.jpg" alt="BCA test rig photo 2" loading="lazy">
+              <img src="images/bca-3.jpg" alt="BCA test rig photo 3" loading="lazy">
+              <img src="images/bca-4.jpg" alt="BCA test rig photo 4" loading="lazy">
+            </div>
+            <button type="button" class="carousel-btn carousel-next" aria-label="Next BCA photo">&#8250;</button>
+          </div>
         </div>
       </div>
     </div>
@@ -115,28 +139,33 @@
         <h3 class="project-name">MDAR - Medication Delivery Assistive Robotics</h3>
         <p class="project-meta">Senior capstone · CAD lead · Onshape · 3D printing · Rapid prototyping · Mechanical assembly</p>
 
+        <div class="project-gallery">
+          <img src="images/mdar-1.jpg" alt="MDAR robotic dispensing platform photo" loading="lazy">
+          <img src="images/mdar-2.jpg" alt="MDAR mechanism CAD render" loading="lazy">
+        </div>
+
         <div class="review-grid">
           <div class="review-col">
             <h4>What</h4>
             <ul>
-              <li>Architected the mechanical subsystem for a healthcare robotic dispensing platform, leading CAD development</li>
+              <li>Led CAD development within a 5 person capstone team and architected the mechanical subsystem for a healthcare robotic dispensing platform</li>
               <li>Integrated NEMA stepper motors, capacitive sensors, and embedded controls</li>
-              <li>Developed a precision mechanism for single pill isolation, transport, and dispensing</li>
+              <li>Developed a precision pill singularization mechanism using a vertical threaded rod gantry and vacuum end effector with capacitive presence detection</li>
             </ul>
           </div>
           <div class="review-col">
             <h4>How</h4>
             <ul>
-              <li>Designed and tolerance analyzed a precision pill singularization mechanism using a vertical threaded rod gantry and vacuum end effector</li>
-              <li>Optimized geometry, clearances, and material selection for reliable part separation</li>
-              <li>Built and tested physical prototypes, measuring dispense time, noise level, and cycle reliability</li>
+              <li>Designed and tolerance analyzed the pill singularization mechanism for reliable part separation</li>
+              <li>Selected and integrated stepper motor drivers and limit switches</li>
+              <li>Iteratively tuned motion profiles to eliminate mechanical binding across the gantry's full travel range</li>
             </ul>
           </div>
           <div class="review-col">
             <h4>Results</h4>
             <ul>
-              <li>Near 100 percent dispensing accuracy validated across 50+ dispense cycles</li>
-              <li>Identified and mitigated failure modes including jamming and misfeeds through iterative refinement</li>
+              <li>Validated across 50+ dispense cycles at near 100 percent accuracy</li>
+              <li>Mitigated jamming and misfeeds through iterative refinement</li>
               <li>Delivered a mechanically robust, sensor validated system with consistent, repeatable performance</li>
             </ul>
           </div>
@@ -156,11 +185,16 @@
         <h3 class="project-name">6-DOF 3D Printed Manipulator Robot</h3>
         <p class="project-meta">Personal project · CAD · Kinematic simulation · Structural analysis</p>
 
+        <div class="project-gallery">
+          <img src="images/manipulator-1.jpg" alt="6-DOF manipulator arm assembly photo" loading="lazy">
+          <img src="images/manipulator-2.jpg" alt="6-DOF manipulator joint CAD render" loading="lazy">
+        </div>
+
         <div class="review-grid">
           <div class="review-col">
             <h4>What</h4>
             <ul>
-              <li>Designed a modular 6 DOF robotic arm with load bearing 3D printed joints and structural mounts</li>
+              <li>Built and mechanically validated a modular 6 DOF robotic arm with load bearing 3D printed joints</li>
               <li>Modeled and simulated manipulator kinematics to validate reachable workspace and joint configurations</li>
               <li>Evaluated structural performance under representative load cases up to 5 kg payloads</li>
             </ul>
@@ -170,7 +204,7 @@
             <ul>
               <li>Optimized geometry and infill structure in CAD to balance stiffness to weight efficiency</li>
               <li>Analyzed joint trajectories and workspace to guide mechanical iteration and motion planning</li>
-              <li>Tested joints under load to identify and mitigate failure modes</li>
+              <li>Iterated through multiple print orientations and infill patterns via FDM 3D printing to balance strength, weight, and print time across all six joints</li>
             </ul>
           </div>
           <div class="review-col">
@@ -195,31 +229,36 @@
 
       <article class="project-card">
         <h3 class="project-name">Peloton Candy Machine</h3>
-        <p class="project-meta">Academic client project · CAD lead · OnShape, Python, Arduino, 3D printing</p>
+        <p class="project-meta">Academic client project · CAD lead · Onshape · 3D printing</p>
+
+        <div class="project-gallery">
+          <img src="images/peloton-1.jpg" alt="Peloton candy dispenser assembly photo" loading="lazy">
+          <img src="images/peloton-2.jpg" alt="Peloton candy dispenser CAD render" loading="lazy">
+        </div>
 
         <div class="review-grid">
           <div class="review-col">
             <h4>What</h4>
             <ul>
-              <li>Designed and built an interactive, accessible candy-dispensing device with a Peloton/exercise theme for an academic client</li>
-              <li>Translated client needs into engineering specs covering safety, durability, low noise, and fast dispense time</li>
-              <li>Developed a complete mechanical system for single-candy dispensing, bulk storage, and quick refill</li>
+              <li>Led mechanical design and CAD development for a Peloton themed candy dispensing machine, translating client requirements into engineering specifications</li>
+              <li>Presented 3+ design concepts to teammates using a weighted decision matrix and structured tradeoff analysis</li>
+              <li>Developed a complete mechanical system for single candy dispensing, bulk storage, and quick refill</li>
             </ul>
           </div>
           <div class="review-col">
             <h4>How</h4>
             <ul>
-              <li>Led concept exploration and down-selected using a weighted decision matrix</li>
-              <li>Designed and prototyped dispensing mechanisms focused on minimizing jamming and double-pickup</li>
-              <li>Built and tested physical prototypes against client requirements</li>
+              <li>Created and integrated a dispensing mechanism, optimizing geometry, tolerances, and actuation</li>
+              <li>Sourced and integrated off the shelf motors, sensors, and electronics with the custom designed housing</li>
+              <li>Coordinated with teammates on wiring and control integration</li>
             </ul>
           </div>
           <div class="review-col">
             <h4>Results</h4>
             <ul>
-              <li>Reliable single candy dispensing validated through 25 cycle testing, achieving over 90 percent dispense success rate</li>
-              <li>Met client constraints of under 2 second dispense time and under 80 dB noise level</li>
-              <li>Delivered a low-cost, low-maintenance design with strong thematic aesthetics</li>
+              <li>Validated through 25 cycle testing, achieving over 90 percent dispense success rate</li>
+              <li>Mitigated jamming through iterative refinement</li>
+              <li>Delivered a low cost, low maintenance design with strong thematic aesthetics</li>
             </ul>
           </div>
         </div>
